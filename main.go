@@ -8,6 +8,8 @@ import (
 func main() {
 	app := fiber.New()
 	config.ConnectDb()
+	// run this function once
+	// config.MigrateDB(&models.User{}, &models.License{})
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World!")
