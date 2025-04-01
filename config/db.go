@@ -34,3 +34,9 @@ func ConnectDb() {
 	DB = db
 	fmt.Println("Database connection established successfully")
 }
+
+func MigrateDB(models ...interface{}) {
+	DB.AutoMigrate(models...)
+}
+
+
