@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/heronhoga/renewnow-be/config"
+	"github.com/heronhoga/renewnow-be/routes"
 )
 
 func main() {
@@ -11,6 +12,8 @@ func main() {
 	// run this function once
 	// config.MigrateDB(&models.User{}, &models.License{})
 
+	routes.Route(app)
+	
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World!")
 	})
