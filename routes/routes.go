@@ -7,4 +7,5 @@ import (
 
 func Route(r *fiber.App) {
 	r.Post("/register", controllers.Register)
+	r.Post("/login", controllers.Login)
 }
