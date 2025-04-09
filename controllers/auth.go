@@ -137,7 +137,28 @@ func Login(ctx *fiber.Ctx) error {
 	return ctx.Status(200).JSON(fiber.Map{
 		"message": "Login successful",
 		"token": sessionToken,
+		"username": user.Username,
 	})
-	
+}
 
+func Logout(ctx *fiber.Ctx) error {
+	userLogout := new(requests.LogoutUserRequest)
+
+	if err := ctx.BodyParser(userLogout); err != nil {
+		return ctx.Status(400).JSON(fiber.Map{
+			"message": "something wrong with your request",
+		})
+	}
+
+	//set session column to null
+	updateToken := config.DB.Model(&models.User{}).Where("username = ?", userLogout.Username).Update("session", nil)
+	if updateToken.RowsAffected == 0 {
+		return ctx.Status(500).JSON(fiber.Map{
+			"message": "Internal server error",
+		})
+	}
+
+	return ctx.Status(200).JSON(fiber.Map{
+		"message": "Logout successful",
+	})
 }
