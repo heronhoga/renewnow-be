@@ -3,14 +3,16 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/heronhoga/renewnow-be/config"
+	"github.com/heronhoga/renewnow-be/models"
 	"github.com/heronhoga/renewnow-be/routes"
 )
 
 func main() {
 	app := fiber.New()
 	config.ConnectDb()
-	// run this function once
-	// config.MigrateDB(&models.User{}, &models.License{})
+	
+	//migration
+	config.MigrateDB(&models.User{}, &models.License{})
 
 	routes.Route(app)
 	
