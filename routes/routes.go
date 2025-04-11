@@ -10,4 +10,6 @@ func Route(r *fiber.App) {
 	r.Post("/register", controllers.Register)
 	r.Post("/login", controllers.Login)
 	r.Post("/logout", middlewares.CheckSession, controllers.Logout)
+
+	r.Post("/license/create", middlewares.CheckSession, controllers.CreateLicense)
 }
