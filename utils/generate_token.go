@@ -6,7 +6,7 @@ import (
 )
 
 func GenerateToken() (string, error) {
-	bytes := make([]byte, 32) //32 bytes
+	bytes := make([]byte, 48) //48 bytes
 	_, err := rand.Read(bytes)
 
     if err != nil {
