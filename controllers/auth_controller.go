@@ -33,11 +33,11 @@ func Register(ctx *fiber.Ctx) error {
 
 	var existingUser models.User
 
-	//email check result
-	emailCheckResult := config.DB.Where("email = ?", user.Email).First(&existingUser)
-	if emailCheckResult.RowsAffected > 0 {
+	//phone check result
+	phoneCheckResult := config.DB.Where("phone = ?", user.Phone).First(&existingUser)
+	if phoneCheckResult.RowsAffected > 0 {
 		return ctx.Status(400).JSON(fiber.Map{
-			"message": "Email already exists",
+			"message": "Phone number already exists",
 		})
 	}
 
@@ -63,7 +63,7 @@ func Register(ctx *fiber.Ctx) error {
 		Password: newUserHashedPassword,
 		FirstName: user.FirstName,
 		LastName: user.LastName,
-		Email: user.Email,
+		Phone: user.Phone,
 	}
 
 	//create new user data
