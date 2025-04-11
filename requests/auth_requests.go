@@ -14,5 +14,5 @@ type LoginUserRequest struct {
 }
 
 type LogoutUserRequest struct {
-    Username string `json:"username" validate:"required,min=1"`
+    Session string `json:"session" validate:"required,min=1"`
 }

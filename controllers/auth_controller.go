@@ -151,7 +151,7 @@ func Logout(ctx *fiber.Ctx) error {
 	}
 
 	//set session column to null
-	updateToken := config.DB.Model(&models.User{}).Where("username = ?", userLogout.Username).Update("session", nil)
+	updateToken := config.DB.Model(&models.User{}).Where("session = ?", userLogout.Session).Update("session", nil)
 	if updateToken.RowsAffected == 0 {
 		return ctx.Status(500).JSON(fiber.Map{
 			"message": "Internal server error",
